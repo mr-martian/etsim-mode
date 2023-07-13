@@ -180,7 +180,9 @@
                 (let* ((wj (elt arr j)) (wji (cadr wj)))
                   (when (and (cadr wj) ; it's a word
                              (or (< wii wji wih)
-                                 (< wih wji wii)))
+                                 (< wih wji wii))
+                             ; break infinite loop in non-projective
+                             (not (< (nth 2 wj) wii wji wih)))
                     (when (> (nth 3 wj) h-min)
                       (setq h-min (nth 3 wj)))
                     (unless (nth 4 wj)
